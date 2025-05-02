@@ -1,3 +1,6 @@
+
+import { cn } from "@/lib/utils";
+
 interface PaginationProps {
   currentPage: number;
   totalPages: number;

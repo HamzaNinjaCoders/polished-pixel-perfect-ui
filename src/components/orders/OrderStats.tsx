@@ -1,10 +1,11 @@
-import { OrderStats } from "@/types/orders";
+
+import { OrderStats as OrderStatsType } from "@/types/orders";
 
 interface OrderStatsProps {
-  stats: OrderStats;
+  stats: OrderStatsType;
 }
 
-export const OrderStats = ({ stats }: OrderStatsProps) => {
+export const OrderStatsDisplay = ({ stats }: OrderStatsProps) => {
   return (
     <div className="items-center border border-[color:var(--Grey-1,#F2F2F2)] flex w-full gap-[40px_88px] text-base font-medium tracking-[-0.32px] flex-wrap bg-white mt-10 px-2 py-4 rounded-lg border-solid">
       <div className="self-stretch flex gap-2 my-auto">

@@ -1,11 +1,12 @@
+
 import { useState } from "react";
 import { OrderHeader } from "@/components/orders/OrderHeader";
 import { OrderSidebar } from "@/components/orders/OrderSidebar";
-import { OrderStats } from "@/components/orders/OrderStats";
+import { OrderStatsDisplay } from "@/components/orders/OrderStats";
 import { OrdersTable } from "@/components/orders/OrdersTable";
-import type { Order, OrderStats as OrderStatsType } from "@/types/orders";
+import type { Order, OrderStats } from "@/types/orders";
 
-const mockStats: OrderStatsType = {
+const mockStats: OrderStats = {
   totalOrders: 56,
   receivedOrders: 56,
   pendingOrders: 56,
@@ -56,7 +57,7 @@ export default function Index() {
               </button>
             </div>
 
-            <OrderStats stats={mockStats} />
+            <OrderStatsDisplay stats={mockStats} />
 
             <div className="flex w-full items-center gap-[40px_100px] font-medium justify-between flex-wrap mt-10">
               <div className="self-stretch relative flex min-w-60 items-center gap-[40px_100px] text-[#808080] my-auto px-3.5">
