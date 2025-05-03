@@ -1,3 +1,4 @@
+
 import { cn } from "@/lib/utils";
 
 interface StatusBadgeProps {
@@ -16,12 +17,12 @@ export const StatusBadge = ({ status, className }: StatusBadgeProps) => {
   return (
     <div
       className={cn(
-        "p-2 rounded-2xl text-xs font-medium",
+        "px-3 py-1 rounded-xl text-xs font-medium inline-block text-center w-20",
         statusStyles[status],
         className,
       )}
     >
-      {status.charAt(0).toUpperCase() + status.slice(1)}
+      {status === "received" ? "Recieved" : status.charAt(0).toUpperCase() + status.slice(1)}
     </div>
   );
 };

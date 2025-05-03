@@ -5,6 +5,7 @@ import { OrderSidebar } from "@/components/orders/OrderSidebar";
 import { OrderStatsDisplay } from "@/components/orders/OrderStats";
 import { OrdersTable } from "@/components/orders/OrdersTable";
 import type { Order, OrderStats } from "@/types/orders";
+import { ChevronDown } from "lucide-react";
 
 const mockStats: OrderStats = {
   totalOrders: 56,
@@ -34,99 +35,100 @@ export default function Index() {
   const [activeTab, setActiveTab] = useState("all");
 
   return (
-    <div className="bg-white overflow-hidden">
-      <OrderHeader />
+    <div className="bg-white min-h-screen flex">
+      <OrderSidebar />
+      
+      <div className="flex-1">
+        <OrderHeader />
 
-      <div className="flex w-full max-w-[1416px] items-stretch gap-8 flex-wrap">
-        <OrderSidebar />
+        <div className="p-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-[#1A011E] text-2xl font-semibold">
+                Orders
+              </h1>
+              <p className="text-[#808080] text-sm mt-1">
+                All your orders are been showed here
+              </p>
+            </div>
 
-        <main className="grow shrink-0 basis-0 w-fit my-auto">
-          <div className="w-full">
-            <div className="flex w-full gap-[40px_100px] leading-[1.3] justify-between flex-wrap">
-              <div className="min-w-60 w-[583px]">
-                <h1 className="text-[#1A011E] text-[32px] font-semibold tracking-[-0.64px]">
-                  Orders
-                </h1>
-                <p className="text-[#808080] text-sm font-medium tracking-[-0.28px] mt-2">
-                  All your orders are been showed here
-                </p>
-              </div>
+            <button className="bg-[#6B047C] text-white px-5 py-3 rounded text-sm font-medium">
+              Order an item
+            </button>
+          </div>
 
-              <button className="self-stretch rounded gap-2.5 text-sm text-white font-medium tracking-[-0.28px] w-[127px] bg-[#6B047C] pl-5 pr-[19px] py-4">
-                Order an item
+          <OrderStatsDisplay stats={mockStats} />
+
+          <div className="flex items-center justify-between mt-8">
+            <div className="flex items-center space-x-6">
+              <button
+                onClick={() => setActiveTab("all")}
+                className={`flex items-center gap-2 py-1 ${
+                  activeTab === "all" ? "text-[#6B047C]" : "text-[#808080]"
+                }`}
+              >
+                <span className="font-medium">All</span>
+                <span className={`text-xs px-2 py-0.5 rounded ${
+                  activeTab === "all" ? "bg-[#F9F5FA]" : "bg-[#F2F2F2]"
+                }`}>
+                  124
+                </span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab("active")}
+                className={`flex items-center gap-2 py-1 ${
+                  activeTab === "active" ? "text-[#6B047C]" : "text-[#808080]"
+                }`}
+              >
+                <span className="font-medium">Active order</span>
+                <span className={`text-xs px-2 py-0.5 rounded ${
+                  activeTab === "active" ? "bg-[#F9F5FA]" : "bg-[#F2F2F2]"
+                }`}>
+                  43
+                </span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab("received")}
+                className={`flex items-center gap-2 py-1 ${
+                  activeTab === "received" ? "text-[#6B047C]" : "text-[#808080]"
+                }`}
+              >
+                <span className="font-medium">Received order</span>
+                <span className={`text-xs px-2 py-0.5 rounded ${
+                  activeTab === "received" ? "bg-[#F9F5FA]" : "bg-[#F2F2F2]"
+                }`}>
+                  43
+                </span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab("cancelled")}
+                className={`flex items-center gap-2 py-1 ${
+                  activeTab === "cancelled" ? "text-[#6B047C]" : "text-[#808080]"
+                }`}
+              >
+                <span className="font-medium">Cancelled orders</span>
+                <span className={`text-xs px-2 py-0.5 rounded ${
+                  activeTab === "cancelled" ? "bg-[#F9F5FA]" : "bg-[#F2F2F2]"
+                }`}>
+                  43
+                </span>
               </button>
             </div>
 
-            <OrderStatsDisplay stats={mockStats} />
-
-            <div className="flex w-full items-center gap-[40px_100px] font-medium justify-between flex-wrap mt-10">
-              <div className="self-stretch relative flex min-w-60 items-center gap-[40px_100px] text-[#808080] my-auto px-3.5">
-                <button
-                  onClick={() => setActiveTab("all")}
-                  className={`flex items-center gap-2 p-2 ${
-                    activeTab === "all" ? "text-[#6B047C]" : "text-[#808080]"
-                  }`}
-                >
-                  <span>All</span>
-                  <span
-                    className={`rounded px-2 py-0.5 ${
-                      activeTab === "all" ? "bg-[#F9F5FA]" : "bg-[#F2F2F2]"
-                    }`}
-                  >
-                    124
-                  </span>
-                </button>
-
-                <button
-                  onClick={() => setActiveTab("active")}
-                  className={`flex items-center gap-2 p-2 ${
-                    activeTab === "active" ? "text-[#6B047C]" : "text-[#808080]"
-                  }`}
-                >
-                  <span>Active order</span>
-                  <span className="bg-[#F2F2F2] rounded px-2 py-0.5">43</span>
-                </button>
-
-                <button
-                  onClick={() => setActiveTab("received")}
-                  className={`flex items-center gap-2 p-2 ${
-                    activeTab === "received"
-                      ? "text-[#6B047C]"
-                      : "text-[#808080]"
-                  }`}
-                >
-                  <span>Received order</span>
-                  <span className="bg-[#F2F2F2] rounded px-2 py-0.5">43</span>
-                </button>
-
-                <button
-                  onClick={() => setActiveTab("cancelled")}
-                  className={`flex items-center gap-2 p-2 ${
-                    activeTab === "cancelled"
-                      ? "text-[#6B047C]"
-                      : "text-[#808080]"
-                  }`}
-                >
-                  <span>Cancelled orders</span>
-                  <span className="bg-[#F2F2F2] rounded px-2 py-0.5">43</span>
-                </button>
-              </div>
-
-              <div className="self-stretch flex items-center gap-4 text-sm text-center leading-[1.3] justify-center my-auto">
-                <span className="text-[#CCC]">Filter status:</span>
-                <div className="items-center rounded border border-[#E6E6E6] flex gap-2 text-[#808080] whitespace-nowrap bg-white p-2">
-                  <span>Ongoing</span>
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets/6d6775384ccd46a982a7cf80d05dc013/44786e790d25cf572bd7dc3ffc91ce049e9d5e9c?placeholderIfAbsent=true"
-                    className="aspect-[1] object-contain w-4"
-                  />
-                </div>
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-[#CCC]">Filter status:</span>
+              <div className="flex items-center gap-1 border border-[#E6E6E6] rounded px-3 py-1.5 text-sm text-[#808080]">
+                <span>Ongoing</span>
+                <ChevronDown className="h-4 w-4" />
               </div>
             </div>
-
-            <OrdersTable orders={mockOrders} />
           </div>
-        </main>
+
+          <OrdersTable orders={mockOrders} />
+        </div>
       </div>
     </div>
   );
